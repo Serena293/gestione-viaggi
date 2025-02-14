@@ -24,7 +24,11 @@ public class DipendenteController {
         return ResponseEntity.ok(dipendenteService.trovaDipendente(id));
     }
 
-
+    // READ (Trova tutti i dipendenti)
+    @GetMapping
+    public ResponseEntity<List<Dipendente>> getDipendenti() {
+        return ResponseEntity.ok(dipendenteService.trovaDipendenti());
+    }
 
     // UPDATE (Modifica un dipendente esistente)
     @PutMapping("/{id}")
