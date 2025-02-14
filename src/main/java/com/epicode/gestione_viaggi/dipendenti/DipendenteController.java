@@ -12,7 +12,7 @@ import java.util.List;
 public class DipendenteController {
     private final DipendenteService dipendenteService;
 
-    // CREATE (Aggiunge un nuovo dipendente)
+    // CREATE
     @PostMapping
     public ResponseEntity<Dipendente> creaDipendente(@RequestBody Dipendente dipendente) {
         return ResponseEntity.ok(dipendenteService.salvaDipendente(dipendente));

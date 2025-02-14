@@ -2,14 +2,13 @@ package com.epicode.gestione_viaggi.viaggi;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ViaggioService {
-    private final ViaggiRepository viaggiRepository;
+    private final ViaggioRepository viaggiRepository;
 
     public List<Viaggio> trovaViaggi() {
         return List.copyOf(viaggiRepository.findAll()); // Converte Iterable in List

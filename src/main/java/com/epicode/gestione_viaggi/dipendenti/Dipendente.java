@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "dipendenti")
 public class Dipendente {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long idDipendente;
     private String nome;
     private String cognome;

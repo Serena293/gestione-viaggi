@@ -10,8 +10,6 @@ public class GestioneViaggiApplication {
 		SpringApplication.run(GestioneViaggiApplication.class, args);
 	}
 
-	//ricordati di aggiungere il file application.properties
 
-	//controlla dipendenza
 
 }
