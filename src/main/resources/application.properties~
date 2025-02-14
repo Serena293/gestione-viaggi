@@ -1,0 +1,12 @@
+spring.application.name=gestione-viaggi
+
+spring.jpa.hibernate.ddl-auto= update
+spring.sql.init.mode=always
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://localhost/gestione_viaggi
+spring.datasource.username=postgres
+spring.datasource.password=00000000
+
+cloudinary.cloud_name=drl8lflxm
+cloudinary.api_key=784966822151358
+cloudinary.api_secret=${CL_SECRET}

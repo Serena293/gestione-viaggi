@@ -1,0 +1,7 @@
+Gestione Viaggi Aziendali
+
+Viaggio; data LocalDate, String descrizione, stato enum.
+
+Dipendete: id, nome, congnome, username, email, Viaggio.
+
+Prenotazione: id, data LocalDate, Viaggio, Dipendete, preferenze del dipendete.
