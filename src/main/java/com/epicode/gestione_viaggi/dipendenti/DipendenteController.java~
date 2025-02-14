@@ -1,5 +1,6 @@
 package com.epicode.gestione_viaggi.dipendenti;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,16 +13,23 @@ import java.util.List;
 public class DipendenteController {
     private final DipendenteService dipendenteService;
 
-    // CREATE (Aggiunge un nuovo dipendente)
+    // CREATE
     @PostMapping
     public ResponseEntity<Dipendente> creaDipendente(@RequestBody Dipendente dipendente) {
+        if (dipendente == null) {
+            throw new IllegalArgumentException("Errore nella creazione di un dipendente");
+        }
         return ResponseEntity.ok(dipendenteService.salvaDipendente(dipendente));
     }
 
     // READ (Trova un dipendente per ID)
     @GetMapping("/{id}")
     public ResponseEntity<Dipendente> getDipendente(@PathVariable Long id) {
-        return ResponseEntity.ok(dipendenteService.trovaDipendente(id));
+        Dipendente dipendente = dipendenteService.trovaDipendente(id);
+        if (dipendente == null) {
+            throw new EntityNotFoundException("Dipendente non trovato con ID " + id);
+        }
+        return ResponseEntity.ok(dipendente);
     }
 
     // READ (Trova tutti i dipendenti)

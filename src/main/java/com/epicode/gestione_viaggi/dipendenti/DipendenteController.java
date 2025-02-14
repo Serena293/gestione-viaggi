@@ -1,5 +1,6 @@
 package com.epicode.gestione_viaggi.dipendenti;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,20 @@ public class DipendenteController {
     // CREATE
     @PostMapping
     public ResponseEntity<Dipendente> creaDipendente(@RequestBody Dipendente dipendente) {
+        if (dipendente == null) {
+            throw new IllegalArgumentException("Errore nella creazione di un dipendente");
+        }
         return ResponseEntity.ok(dipendenteService.salvaDipendente(dipendente));
     }
 
     // READ (Trova un dipendente per ID)
     @GetMapping("/{id}")
     public ResponseEntity<Dipendente> getDipendente(@PathVariable Long id) {
-        return ResponseEntity.ok(dipendenteService.trovaDipendente(id));
+        Dipendente dipendente = dipendenteService.trovaDipendente(id);
+        if (dipendente == null) {
+            throw new EntityNotFoundException("Dipendente non trovato con ID " + id);
+        }
+        return ResponseEntity.ok(dipendente);
     }
 
     // READ (Trova tutti i dipendenti)
@@ -39,7 +47,11 @@ public class DipendenteController {
     // DELETE (Elimina un dipendente per ID)
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminaDipendente(@PathVariable Long id) {
-        dipendenteService.eliminaDipendente(id);
-        return ResponseEntity.ok("Dipendente eliminato con successo");
+        try {
+            dipendenteService.eliminaDipendente(id);
+            return ResponseEntity.ok("Dipendente eliminato");
+        } catch (EntityNotFoundException ex) {
+            throw new EntityNotFoundException("Dipendente non trovato con ID " + id);
+        }
     }
 }

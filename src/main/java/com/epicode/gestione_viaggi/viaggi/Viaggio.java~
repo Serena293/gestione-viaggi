@@ -27,7 +27,6 @@ public class Viaggio {
     @NotNull(message = "La data non può essere nulla")
     @Future(message = "Non puoi viaggiare indietro nel tempo")
     private LocalDate data;
-
-    @NotNull(message = "Lo stato del viaggio non può essere nullo")
+    
     private StatoViaggio stato;
 }
