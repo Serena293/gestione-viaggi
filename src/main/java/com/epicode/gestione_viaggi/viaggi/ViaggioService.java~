@@ -2,13 +2,11 @@ package com.epicode.gestione_viaggi.viaggi;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Validated
 public class ViaggioService {
     private final ViaggioRepository viaggiRepository;
 

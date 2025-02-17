@@ -4,10 +4,13 @@ spring.jpa.hibernate.ddl-auto= update
 spring.sql.init.mode=always
 spring.datasource.driverClassName=org.postgresql.Driver
 
-spring.datasource.url=${DB_URL}
-spring.datasource.username=${DB_USERNAME}
-spring.datasource.password=${DB_password}
+spring.datasource.url=jdbc:postgresql://localhost/gestione_viaggi
+spring.datasource.username=postgres
+spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
 
-cloudinary.cloud_name=${CL_name}
-cloudinary.api_key=${CL_KEY}
-cloudinary.api_secret=${CL_secret}
+jwt.secret=${JWT_SECRET}
+jwt.expiration=3600000
+
+cloudinary.cloud_name=${CLOUDINARY_CLOUD_NAME}
+cloudinary.api_key=${CLOUDINARY_API_KEY}
+cloudinary.api_secret=${CLOUDINARY_API_SECRET}

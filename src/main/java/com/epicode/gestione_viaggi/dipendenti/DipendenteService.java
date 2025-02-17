@@ -4,10 +4,12 @@ import com.epicode.gestione_viaggi.viaggi.Viaggio;
 import com.epicode.gestione_viaggi.viaggi.ViaggioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class DipendenteService {
     private final DipendenteRepository dipendenteRepository;
