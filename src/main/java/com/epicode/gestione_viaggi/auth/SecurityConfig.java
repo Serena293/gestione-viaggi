@@ -1,4 +1,4 @@
-package auth;
+package com.epicode.gestione_viaggi.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,19 +29,24 @@ public class SecurityConfig {
 
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
-    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf(csrf -> csrf.disable()) // Disabilita CSRF
                 .authorizeHttpRequests(authorize -> authorize
-                        //.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll() // Accesso libero a Swagger
-                        //.requestMatchers("/api/**").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/swagger-ui.html"
+                        ).permitAll() // 🔹 Swagger accessibile senza autenticazione
+                        .requestMatchers("/api/auth/**").permitAll() // 🔹 Login e registrazione accessibili
+                        .anyRequest().authenticated() // 🔒 Tutti gli altri endpoint richiedono JWT
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+                .exceptionHandling(exception -> exception
+                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 );
 
         // Aggiungi il filtro JWT
@@ -49,6 +54,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

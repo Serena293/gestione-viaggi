@@ -1,4 +1,4 @@
-package auth;
+package com.epicode.gestione_viaggi.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
